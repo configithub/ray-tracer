@@ -59,11 +59,9 @@ clean.OBJ += $(Release_target.BIN) $(Release_target.OBJ)
 
 Release_target : Release_target.before $(Release_target.BIN) Release_target.after_always
 Release_target : CFLAGS +=  
-Release_target : INCLUDES += -I/usr/lib -I/usr/include/SDL 
+Release_target : INCLUDES += -I/usr/include
 Release_target : RCFLAGS += 
-Release_target : LDFLAGS +=  -lSDLmain -lSDL -lSDL_image -L/usr/lib/i386-linux-gnu   
-Release_target : LDFLAGS +=  -lGL -L/usr/lib/i386-linux-gnu   
-Release_target : LDFLAGS +=  -L/usr/lib/i386-linux-gnu
+Release_target : LDFLAGS +=  -lSDLmain -lSDL -lSDL_image -lGL -L/usr/lib/i386-linux-gnu   
 
 Release_target.before :
 	
