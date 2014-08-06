@@ -42,7 +42,7 @@ void render() {
   clear_screen();
   draw_all_squares();
   draw_ray_light_surface();
-  draw_all_rays(&mouse_x, &mouse_y);
+  //draw_all_rays(&mouse_x, &mouse_y);
   SDL_GL_SwapBuffers();
 }
 

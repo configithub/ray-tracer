@@ -20,26 +20,26 @@ bool line_intersection(int x1, int y1, int x2, int y2, int x3, int y3, int x4, i
   }else{
     int n = (x4 - x3) * (y1 - y3) - (y4 - y3) * (x1 - x3);
     s = (float)n / d;
-    (*result).x = (long) (x1 + s * (x2 - x1) + 0.5);
-    (*result).y = (long) (y1 + s * (y2 - y1) + 0.5); 
+    result->x = (long) (x1 + s * (x2 - x1) + 0.5);
+    result->y = (long) (y1 + s * (y2 - y1) + 0.5); 
     return true;
   }
 }
 
 bool is_intersect_in_ray(ray *r, point *p) {
-  return ( ( ( (*r).center.x <= (*p).x && (*p).x <= (*r).out.x )
-          || ( (*r).out.x <= (*p).x && (*p).x <= (*r).center.x ) )
+  return ( ( ( r->center.x <= p->x && p->x <= r->out.x )
+          || ( r->out.x <= p->x && p->x <= r->center.x ) )
             &&
-           ( ( (*r).center.y <= (*p).y && (*p).y <= (*r).out.y )
-          || ( (*r).out.y <= (*p).y && (*p).y <= (*r).center.y ) ) );
+           ( ( r->center.y <= p->y && p->y <= r->out.y )
+          || ( r->out.y <= p->y && p->y <= r->center.y ) ) );
 }
 
 bool is_intersect_in_segment(segment *s, point *p) {
-  return ( ( ( (*s).b.x <= (*p).x && (*p).x <= (*s).a.x )
-          || ( (*s).a.x <= (*p).x && (*p).x <= (*s).b.x ) )
+  return ( ( ( s->b.x <= p->x && p->x <= s->a.x )
+          || ( s->a.x <= p->x && p->x <= s->b.x ) )
             &&
-           ( ( (*s).b.y <= (*p).y && (*p).y <= (*s).a.y )
-          || ( (*s).a.y <= (*p).y && (*p).y <= (*s).b.y ) ) );
+           ( ( s->b.y <= p->y && p->y <= s->a.y )
+          || ( s->a.y <= p->y && p->y <= s->b.y ) ) );
 }
 
 int last_x = 0;
@@ -59,8 +59,7 @@ void calculate_ray_triangle(int x, int y) {
     }
     rays[current_ray].center.x = x;
     rays[current_ray].center.y = y;
-    rays[current_ray].out.x = ray_corners[i].x;
-    rays[current_ray].out.y = ray_corners[i].y;
+    rays[current_ray].out = ray_corners[i];
     while(rays[current_ray].out.x > 0 
         && rays[current_ray].out.x < WWIDTH 
         && rays[current_ray].out.y > 0 
@@ -85,8 +84,7 @@ void calculate_ray_triangle(int x, int y) {
                         &intersect)) { continue; }
       if(is_intersect_in_ray(&rays[j], &intersect)  &&
          is_intersect_in_segment(&ray_obstacles[i], &intersect)) {
-        rays[j].out.x = intersect.x;
-        rays[j].out.y = intersect.y;
+        rays[j].out = intersect;
       }
     }
   }

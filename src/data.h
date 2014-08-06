@@ -51,15 +51,6 @@ typedef struct {
 ray rays[max_rays];
 int current_ray;
 
-typedef struct {
-  point a;
-  point b;
-  point c;
-} triangle;
-
-#define max_ray_triangle 200
-triangle ray_triangles[max_ray_triangle];
-
 void register_ray_corner(int x, int y);
 void register_ray_obstacle(int x1, int y1, int x2, int y2);
 
