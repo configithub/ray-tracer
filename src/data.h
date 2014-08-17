@@ -1,9 +1,21 @@
 #ifndef _DATA_H_
 #define _DATA_H_
 
+#include <stdbool.h>
+
 #define WWIDTH 400
 #define WHEIGHT 300
 #define BPP_DEPTH 16
+
+#define INF 9999
+
+#define MAPH 400
+#define MAPW 300
+
+int pos_x, pos_y;
+float theta, pi, pov;
+bool is_pov;
+
 
 typedef struct {
   int w;
@@ -50,6 +62,14 @@ typedef struct {
 #define max_rays 200
 ray rays[max_rays];
 int current_ray;
+
+typedef struct {
+  point a;
+  point b;
+} triangle;
+#define max_triangles 200
+triangle triangles[max_triangles];
+int current_triangle;
 
 void register_ray_corner(int x, int y);
 void register_ray_obstacle(int x1, int y1, int x2, int y2);

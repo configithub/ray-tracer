@@ -74,6 +74,16 @@ void draw_line(int x1, int y1, int x2, int y2) {
   glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
 }
 
+void draw_white_line(int x1, int y1, int x2, int y2) {
+  glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
+  GLfloat vertices[] = {x1,y1, x2,y2};
+  glEnableClientState(GL_VERTEX_ARRAY);
+  glVertexPointer(2, GL_FLOAT, 0, vertices);
+  glDrawArrays(GL_LINES, 0, 2);
+  glDisableClientState(GL_VERTEX_ARRAY);
+  glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
+}
+
 void draw_triangle(int x1, int y1, int x2, int y2, 
                                         int x3, int y3) {
   GLfloat vertices[] = {x1,y1, x2,y2, x3,y3};
@@ -117,16 +127,15 @@ void draw_all_rays(int *x, int *y) {
   }
 }
 
-void draw_ray_light_surface() {
-  if(current_ray == 0) { return; }
-  for (int i = 0; i < current_ray-1; ++i) {
-    draw_triangle(rays[i].center.x, rays[i].center.y,
-                  rays[i].out.x, rays[i].out.y,
-                  rays[i+1].out.x, rays[i+1].out.y);
+void draw_ray_light_surface(int x, int y) {
+  if(current_triangle == 0) { return; }
+  for (int i = 0; i < current_triangle; ++i) {
+    draw_triangle(x, y, triangles[i].a.x, triangles[i].a.y,
+              triangles[i].b.x, triangles[i].b.y);
+    // cover aliasing artifacts between triangles
+    draw_white_line(x, y, triangles[i].a.x, triangles[i].a.y);
+    draw_white_line(x, y, triangles[i].b.x, triangles[i].b.y);
   }
-  draw_triangle(rays[current_ray-1].center.x, rays[current_ray-1].center.y,
-                  rays[current_ray-1].out.x, rays[current_ray-1].out.y,
-                  rays[0].out.x, rays[0].out.y);
 }
 
 void draw_rectangle_texture(GLuint texture, int x, int y, 

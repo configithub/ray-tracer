@@ -5,6 +5,7 @@
 #include "render_tools.h"
 #include "ray_tracer.h"
 
+
 int main(int argc, char **argv);
 
 #endif
