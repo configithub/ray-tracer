@@ -64,9 +64,9 @@ void add_edge_rays(float angle, int x, int y) {
   rays[current_ray].out = edge;
   rays[current_ray].angle = angle - theta;
   while(rays[current_ray].out.x > 0 
-      && rays[current_ray].out.x < WWIDTH 
+      && rays[current_ray].out.x < WMAP 
       && rays[current_ray].out.y > 0 
-      && rays[current_ray].out.y < WHEIGHT) {
+      && rays[current_ray].out.y < HMAP) {
     rays[current_ray].out.x += 10*(edge.x - x);
     rays[current_ray].out.y += 10*(edge.y - y);
   }
@@ -74,8 +74,8 @@ void add_edge_rays(float angle, int x, int y) {
 } 
 
 void extend_ray(ray *r) {
-  while(r->out.x > 0 && r->out.x < WWIDTH 
-      && r->out.y > 0 && r->out.y < WHEIGHT) {
+  while(r->out.x > 0 && r->out.x < WMAP 
+      && r->out.y > 0 && r->out.y < HMAP) {
     r->out.x += 10*(r->out.x - r->center.x);
     r->out.y += 10*(r->out.y - r->center.y);
   }

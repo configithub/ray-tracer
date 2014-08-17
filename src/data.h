@@ -9,8 +9,8 @@
 
 #define INF 9999
 
-#define MAPH 400
-#define MAPW 300
+#define WMAP 400
+#define HMAP 300
 
 int pos_x, pos_y;
 float theta, pi, pov;

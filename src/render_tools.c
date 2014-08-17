@@ -22,10 +22,10 @@ bool init_sdl() {
   glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
   SDL_EnableKeyRepeat(1, SDL_DEFAULT_REPEAT_INTERVAL / 3);
   // window corner as ray corners
-  register_ray_obstacle(0, 0, WWIDTH, 0);
-  register_ray_obstacle(WWIDTH, 0, WWIDTH, WHEIGHT);
-  register_ray_obstacle(0, WHEIGHT, WWIDTH, WHEIGHT);
-  register_ray_obstacle(0, WHEIGHT, 0, 0);
+  register_ray_obstacle(0, 0, WMAP, 0);
+  register_ray_obstacle(WMAP, 0, WMAP, HMAP);
+  register_ray_obstacle(0, HMAP, WMAP, HMAP);
+  register_ray_obstacle(0, HMAP, 0, 0);
   return true;
 }
 

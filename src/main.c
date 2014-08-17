@@ -19,15 +19,15 @@ void manage_inputs() {
 void init_position() {
   mouse_x = 0;
   mouse_y = 0;
-  pos_x = MAPW / 2; 
-  pos_y = MAPH / 2;
+  pos_x = WMAP / 2; 
+  pos_y = HMAP / 2;
 }
 
 void init_math_constants() { 
   pi = acos(0) * 2;
   pov = pi / 4;
-  //is_pov = true;
-  theta = pi / 3;
+  is_pov = true;
+  theta = 2 * pi / 3;
   // printf("%f\n", halfpi);
 }
 
@@ -49,8 +49,8 @@ void init_quad(int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4) {
 }
 
 void init_shapes() {
-  init_quad(WWIDTH/2,-40+WHEIGHT/2, 40+WWIDTH/2,WHEIGHT/2,
-            WWIDTH/2,40+WHEIGHT/2, -40+WWIDTH/2,WHEIGHT/2);
+  init_quad(WMAP/2,-40+HMAP/2, 40+WMAP/2,HMAP/2,
+            WMAP/2,40+HMAP/2, -40+WMAP/2,HMAP/2);
   init_quad(250, 100, 300, 100, 300, 150, 250, 150);
   init_quad(50, 90, 120, 70, 120, 250, 50, 150);
 }
