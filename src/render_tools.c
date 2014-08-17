@@ -158,6 +158,7 @@ void draw_surface(triangle *t) {
   int xb = (int) (((t->ab+ pov) / (2*pov)) * WWIDTH + 0.5);
   int la = (int) ((float)10000 / t->da + 0.5);
   int lb = (int) ((float)10000 / t->db + 0.5);
+  if(la <= 1) { return;}
   int ya1 = (WHEIGHT/2) - la; 
   int ya2 = (WHEIGHT/2) + la; 
   int yb1 = (WHEIGHT/2) - lb; 

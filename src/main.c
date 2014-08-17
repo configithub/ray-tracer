@@ -27,7 +27,7 @@ void init_math_constants() {
   pi = acos(0) * 2;
   pov = pi / 4;
   is_pov = true;
-  theta = pi / 2;
+  theta = - pi / 2;
   // printf("%f\n", halfpi);
 }
 
@@ -57,7 +57,7 @@ void init_shapes() {
 
 void render() { 
   clear_screen();
-  draw_all_squares();
+  //draw_all_squares();
   //draw_ray_light_surface(mouse_x, mouse_y);
   //draw_all_rays(&mouse_x, &mouse_y);
   draw_surfaces();
