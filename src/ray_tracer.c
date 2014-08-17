@@ -57,12 +57,12 @@ bool ray_crosses_segment(segment *s, ray *r, point *intersect) {
 
 void add_edge_rays(float angle, int x, int y) {
   point edge; int d = 20;
-  edge.x = (int) (x + d*cos(angle)+0.5);
-  edge.y = (int) (y + d*sin(angle)+0.5);
+  edge.x = (int) (x + d*cos(angle+theta)+0.5);
+  edge.y = (int) (y + d*sin(angle+theta)+0.5);
   rays[current_ray].center.x = x;
   rays[current_ray].center.y = y;
   rays[current_ray].out = edge;
-  rays[current_ray].angle = angle - theta;
+  rays[current_ray].angle = angle;
   while(rays[current_ray].out.x > 0 
       && rays[current_ray].out.x < WMAP 
       && rays[current_ray].out.y > 0 
@@ -98,8 +98,8 @@ void calculate_ray_triangle(int x, int y) {
   current_ray = 0;
   current_triangle = 0;
   if(is_pov) {
-    add_edge_rays(theta + pov, x, y);
-    add_edge_rays(theta - pov, x, y);
+    add_edge_rays(pov, x, y);
+    add_edge_rays(-pov, x, y);
   } 
   for (int i = 0; i < current_ray_corner; ++i) {
     if(x == ray_corners[i].x && y == ray_corners[i].y) {
@@ -132,14 +132,18 @@ void calculate_ray_triangle(int x, int y) {
         && ray_crosses_segment(&ray_obstacles[i], &rays[next], &i2)) {
         float d1 = distance(&rays[j].center, &i1);
         float d2 = distance(&rays[next].center, &i2);
-        if(d1 <= distance1 && d2 <= distance2) {
+        if(d1+d2 <= distance1 + distance2) {
           inter1 = i1; inter2 = i2;
           distance1 = d1; distance2 = d2;
         }
       }  
     }
     triangles[current_triangle].a = inter1;
+    triangles[current_triangle].da = distance1;
+    triangles[current_triangle].aa = rays[j].angle;
     triangles[current_triangle].b = inter2;
+    triangles[current_triangle].db = distance2;
+    triangles[current_triangle].ab = rays[next].angle;
     ++current_triangle;
   }
 }

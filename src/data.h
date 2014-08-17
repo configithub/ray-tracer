@@ -65,7 +65,11 @@ int current_ray;
 
 typedef struct {
   point a;
+  float da;
+  float aa;
   point b;
+  float db;
+  float ab;
 } triangle;
 #define max_triangles 200
 triangle triangles[max_triangles];

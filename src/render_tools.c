@@ -84,6 +84,20 @@ void draw_white_line(int x1, int y1, int x2, int y2) {
   glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
 }
 
+void draw_vertical(float angle, float distance) {
+  glColor4f(0.0f,1.0f,0.0f,1.0f);
+  int x = (int) (((angle + pov) / (2*pov)) * WWIDTH + 0.5);
+  int l = (int) ((float)10000 / distance + 0.5);
+  int y1 = (WHEIGHT/2) - l; 
+  int y2 = (WHEIGHT/2) + l; 
+  GLfloat vertices[] = {x,y1, x,y2};
+  glEnableClientState(GL_VERTEX_ARRAY);
+  glVertexPointer(2, GL_FLOAT, 0, vertices);
+  glDrawArrays(GL_LINES, 0, 2);
+  glDisableClientState(GL_VERTEX_ARRAY);
+  glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
+}
+
 void draw_triangle(int x1, int y1, int x2, int y2, 
                                         int x3, int y3) {
   GLfloat vertices[] = {x1,y1, x2,y2, x3,y3};
@@ -129,12 +143,21 @@ void draw_all_rays(int *x, int *y) {
 
 void draw_ray_light_surface(int x, int y) {
   if(current_triangle == 0) { return; }
-  for (int i = 0; i < current_triangle; ++i) {
+  int max_triangle = is_pov ? current_triangle-1 : current_triangle;
+  for (int i = 0; i < max_triangle; ++i) {
     draw_triangle(x, y, triangles[i].a.x, triangles[i].a.y,
               triangles[i].b.x, triangles[i].b.y);
     // cover aliasing artifacts between triangles
     draw_white_line(x, y, triangles[i].a.x, triangles[i].a.y);
     draw_white_line(x, y, triangles[i].b.x, triangles[i].b.y);
+  }
+}
+
+void draw_verticals() {
+  if(current_triangle == 0) { return; }
+  for (int i = 0; i < current_triangle; ++i) {
+    draw_vertical(triangles[i].aa, triangles[i].da);
+    draw_vertical(triangles[i].ab, triangles[i].db);
   }
 }
 
