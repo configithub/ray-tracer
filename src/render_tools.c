@@ -153,11 +153,28 @@ void draw_ray_light_surface(int x, int y) {
   }
 }
 
-void draw_verticals() {
+void draw_surface(triangle *t) {
+  int xa = (int) (((t->aa+ pov) / (2*pov)) * WWIDTH + 0.5);
+  int xb = (int) (((t->ab+ pov) / (2*pov)) * WWIDTH + 0.5);
+  int la = (int) ((float)10000 / t->da + 0.5);
+  int lb = (int) ((float)10000 / t->db + 0.5);
+  int ya1 = (WHEIGHT/2) - la; 
+  int ya2 = (WHEIGHT/2) + la; 
+  int yb1 = (WHEIGHT/2) - lb; 
+  int yb2 = (WHEIGHT/2) + lb; 
+  // vertical lines
+  draw_line(xa, ya1, xa, ya2);
+  draw_line(xb, yb1, xb, yb2);
+  // horizontal lines 
+  draw_line(xa, ya1, xb, yb1);
+  draw_line(xa, ya2, xb, yb2);
+  //draw_square(xa, ya1, xa, ya2, xb, yb2, xb, yb1);
+}
+
+void draw_surfaces() {
   if(current_triangle == 0) { return; }
   for (int i = 0; i < current_triangle; ++i) {
-    draw_vertical(triangles[i].aa, triangles[i].da);
-    draw_vertical(triangles[i].ab, triangles[i].db);
+    draw_surface(&triangles[i]);
   }
 }
 
