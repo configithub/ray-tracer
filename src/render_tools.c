@@ -135,6 +135,25 @@ void draw_square(int x1, int y1, int x2, int y2,
   glDisableClientState(GL_VERTEX_ARRAY);
 }
 
+
+void draw_square_gradient(int x1, int y1, int x2, int y2, 
+                        int x3, int y3, int x4, int y4,
+                        float r1, float g1, float b1,
+                        float r2, float g2, float b2,
+                        float r3, float g3, float b3,
+                        float r4, float g4, float b4) {
+  GLfloat vertices[] = {x1,y1, x2,y2, x3,y3, x4,y4};
+  GLfloat colors[] = { r1,g1,b1, r2,g2,b2,
+                       r3,g3,b3, r4,g4,b4 };
+  glEnableClientState(GL_VERTEX_ARRAY);
+  glEnableClientState(GL_COLOR_ARRAY);
+  glVertexPointer(2, GL_FLOAT, 0, vertices);
+  glColorPointer(3, GL_FLOAT, 0, colors);
+  glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
+  glDisableClientState(GL_VERTEX_ARRAY);
+  glDisableClientState(GL_COLOR_ARRAY);
+}
+
 void draw_all_rays(int *x, int *y) {
   for (int i = 0; i < current_ray; ++i) {
     draw_line(*x, *y, rays[i].out.x, rays[i].out.y);
@@ -164,17 +183,41 @@ void draw_surface(triangle *t) {
   int yb1 = (WHEIGHT/2) - lb; 
   int yb2 = (WHEIGHT/2) + lb; 
   // vertical lines
-  draw_line(xa, ya1, xa, ya2);
-  draw_line(xb, yb1, xb, yb2);
+  //draw_line(xa, ya1, xa, ya2);
+  //draw_line(xb, yb1, xb, yb2);
   // horizontal lines 
-  draw_line(xa, ya1, xb, yb1);
-  draw_line(xa, ya2, xb, yb2);
-  //draw_square(xa, ya1, xa, ya2, xb, yb2, xb, yb1);
+  //draw_line(xa, ya1, xb, yb1);
+  //draw_line(xa, ya2, xb, yb2);
+  //printf("[%d, %d], [%d, %d], [%d, %d], [%d, %d]\n", xa, ya1, xa, ya2, xb, yb1, xb, yb2);
+  float r1,g1,b1, r2,g2,b2, r3,g3,b3, r4,g4,b4;
+  g1=0; b1=0; g2=0; b2=0; g3=0; b3=0; g4=0; b4=0;
+  r1 = (float)50 / t->da;
+  r2 = (float)50 / t->da;
+  r3 = (float)50 / t->db;
+  r4 = (float)50 / t->db;
+  draw_square_gradient(xa, ya1, xa, ya2, xb, yb2, xb, yb1,
+                         r1,g1,b1, r2,g2,b2,              
+                         r3,g3,b3, r4,g4,b4);
 }
 
 void draw_surfaces() {
+  // floor and ceiling
+  float r1,g1,b1, r2,g2,b2, r3,g3,b3, r4,g4,b4;
+  g1=0; b1=0; g2=0; b2=0; g3=0; b3=0; g4=0; b4=0;
+  r1 = (float)1 / 2;
+  r2 = (float)1 / 2;
+  r3 = (float)1 / 6;
+  r4 = (float)1 / 6;
+  draw_square_gradient(0, 0, WWIDTH, 0, WWIDTH, WHEIGHT/2, 0, WHEIGHT/2,
+                         r1,g1,b1, r2,g2,b2,              
+                         r3,g3,b3, r4,g4,b4);
+  draw_square_gradient(0, WHEIGHT, WWIDTH, WHEIGHT, WWIDTH, WHEIGHT/2, 0, WHEIGHT/2,
+                         r1,g1,b1, r2,g2,b2,              
+                         r3,g3,b3, r4,g4,b4);
+  // walls
   if(current_triangle == 0) { return; }
-  for (int i = 0; i < current_triangle; ++i) {
+  //printf("walls\n");
+  for (int i = 0; i < current_triangle-1; ++i) {
     draw_surface(&triangles[i]);
   }
 }

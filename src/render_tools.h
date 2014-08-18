@@ -24,6 +24,13 @@ void draw_all_squares();
 void draw_hollow_square(int x1, int y1, int x2, int y2, 
                  int x3, int y3, int x4, int y4);
 
+void draw_square_gradient(int x1, int y1, int x2, int y2, 
+                        int x3, int y3, int x4, int y4,
+                        float r1, float g1, float b1,
+                        float r2, float g2, float b2,
+                        float r3, float g3, float b3,
+                        float r4, float g4, float b4);
+
 void draw_square(int x1, int y1, int x2, int y2, 
                  int x3, int y3, int x4, int y4);
 
