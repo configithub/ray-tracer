@@ -13,8 +13,10 @@
 #define HMAP 300
 
 int pos_x, pos_y;
+int speed_x, speed_y;
+int accel_x, accel_y;
 float theta, pi, pov;
-bool is_pov;
+bool is_pov, mode_3d;
 
 
 typedef struct {

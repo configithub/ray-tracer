@@ -87,12 +87,13 @@ float distance(point *a, point *b) {
 }
 
 int last_x = 0; int last_y = 0;
+float last_theta = 0.0;
 
 void calculate_ray_triangle(int x, int y) {
   // if we already have done this for the coordinates,
   // don't do it again
-  if(last_x == x && last_y == y) { return; }else{
-    last_x = x; last_y = y;
+  if(last_x == x && last_y == y && last_theta == theta) { return; }else{
+    last_x = x; last_y = y; last_theta = theta;
   }
   // find each ray and order them by angle
   current_ray = 0;

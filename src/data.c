@@ -10,6 +10,7 @@ float pi = 0;
 float theta = 0;
 float pov = 0;
 bool is_pov = false;
+bool mode_3d = false;
 
 int pos_x = 0;
 int pos_y = 0;
