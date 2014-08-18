@@ -38,6 +38,8 @@ void draw_all_rays(int *x, int *y);
 
 void draw_ray_light_surface();
 
+void draw_surfaces();
+
 void draw_rectangle_texture(GLuint texture, int x, int y, 
                   int xtex, int ytex, int wtex, int htex, 
                 GLfloat r, GLfloat g, GLfloat b, GLfloat a);
