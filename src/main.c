@@ -57,8 +57,8 @@ void manage_speed() {
   if(speed_y > max_speed) { speed_y = max_speed; }
   else if(speed_y < -max_speed) { speed_y = -max_speed; }
   // do motion
-  pos_y += speed_x * cos(theta) + speed_y * sin(theta);
-  pos_x += speed_y * cos(theta) + speed_x * sin(theta);
+  pos_y +=(int) (speed_x * cos(theta) + speed_y * sin(theta)+0.5);
+  pos_x +=(int) (speed_y * cos(theta) - speed_x * sin(theta)+0.5);
   // stay in map
   if(pos_x < boundary) { pos_x = boundary; }
   else if(pos_x > WMAP-boundary) { pos_x = WMAP-boundary; }
