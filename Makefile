@@ -64,7 +64,7 @@ Release_target : Release_target.before $(Release_target.BIN) Release_target.afte
 Release_target : CFLAGS +=  
 Release_target : INCLUDES += -I/usr/include
 Release_target : RCFLAGS += 
-Release_target : LDFLAGS +=  -lSDLmain -lSDL -lSDL_image -lGL -L/usr/lib/i386-linux-gnu   
+Release_target : LDFLAGS += -lm -lSDLmain -lSDL -lSDL_image -lGL -L/usr/lib/x86_64-linux-gnu   
 
 Release_target.before :
 	
