@@ -1,5 +1,5 @@
-CC=gcc
-CFLAGS=-g -O3 -std=c99 --float-store
+CC=clang
+CFLAGS=-g -O3 -std=c99 
 INCLUDES=-I/usr/include
 LDFLAGS=-lm -lSDLmain -lSDL -lSDL_image -lGL -L/usr/lib/x86_64-linux-gnu   
 SRC_DIR=src
