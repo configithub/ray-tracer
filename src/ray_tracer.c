@@ -125,6 +125,8 @@ void calculate_ray_triangle(int x, int y) {
   // find all intersects
   for (int j = 0; j < current_ray; ++j) {
     int next = (j+1) % current_ray;
+    // avoid clipping on the edges of walls when 2 rays are on top of each other
+    if(fabs(rays[j].angle - rays[next].angle) < 0.01) { continue; }
     point inter1, inter2;
     float distance1 = INF, distance2 = INF;
     for (int i = 0; i < current_ray_obstacle; ++i) {
