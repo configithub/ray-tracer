@@ -108,7 +108,7 @@ void calculate_ray_triangle(int x, int y) {
     }
     float angle = atan2( (ray_corners[i].y - y), ( ray_corners[i].x - x) ) - theta;
     if(angle < -pi) { angle += 2 * pi; } else if(angle > pi) { angle -= 2 * pi; }
-    if(is_pov && ((angle < -pov) || (angle > pov))) { continue; }
+    if(is_pov && ((angle <= -pov) || (angle >= pov))) { continue; }
     else{
       // initialize new ray
       rays[current_ray].angle = angle;
@@ -126,7 +126,7 @@ void calculate_ray_triangle(int x, int y) {
   for (int j = 0; j < current_ray; ++j) {
     int next = (j+1) % current_ray;
     // avoid clipping on the edges of walls when 2 rays are on top of each other
-    if(fabs(rays[j].angle - rays[next].angle) < 0.01) { continue; }
+    //if(fabs(rays[j].angle - rays[next].angle) < 0.01) { continue; }
     point inter1, inter2;
     float distance1 = INF, distance2 = INF;
     for (int i = 0; i < current_ray_obstacle; ++i) {

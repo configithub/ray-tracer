@@ -131,8 +131,39 @@ void init_quad(int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4) {
 void init_shapes() {
   init_quad(WMAP/2,-40+HMAP/2, 40+WMAP/2,HMAP/2,
             WMAP/2,40+HMAP/2, -40+WMAP/2,HMAP/2);
-  init_quad(250, 100, 300, 100, 300, 150, 250, 150);
-  init_quad(50, 90, 120, 70, 120, 250, 50, 150);
+  init_quad(250, 100, 
+            300, 100, 
+            300, 150, 
+            250, 150);
+  init_quad(50, 90, 
+            120, 70, 
+            120, 250,
+             50, 150);
+  init_quad(350, 450,
+            750, 450,
+            750, 500,
+            350, 500);
+  init_quad(470, 250,
+            650, 250,
+            650, 300,
+            470, 300);
+  init_quad(WMAP/2-150,-40+HMAP/2+100, 
+            40+WMAP/2-150,HMAP/2+100,
+            WMAP/2-150,40+HMAP/2+100, 
+            -40+WMAP/2-150,HMAP/2+100);
+  init_quad(WMAP/2-250,-40+HMAP/2+100, 
+            40+WMAP/2-250,HMAP/2+100,
+            WMAP/2-250,40+HMAP/2+100, 
+            -40+WMAP/2-250,HMAP/2+100);
+  init_quad(WMAP/2-350,-40+HMAP/2+100, 
+            40+WMAP/2-350,HMAP/2+100,
+            WMAP/2-350,40+HMAP/2+100, 
+            -40+WMAP/2-350,HMAP/2+100);
+  init_quad(700, 75,
+            750, 75,
+            750, 400,
+            700, 400);
+            
 }
 
 void render() { 

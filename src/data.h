@@ -3,14 +3,14 @@
 
 #include <stdbool.h>
 
-#define WWIDTH 400
-#define WHEIGHT 300
+#define WWIDTH 800
+#define WHEIGHT 600
 #define BPP_DEPTH 16
 
 #define INF 9999
 
-#define WMAP 400
-#define HMAP 300
+#define WMAP 800
+#define HMAP 600
 
 int pos_x, pos_y;
 int speed_x, speed_y;
