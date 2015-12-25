@@ -3,6 +3,9 @@ ray-tracer
 
 realtime 2d and 3d (like wolfenstein) ray tracing with opengl/sdl around simple shapes 
 
+[![ray tracer](http://img.youtube.com/vi/nWIwEvb5gEs/0.jpg)](http://www.youtube.com/watch?v=nWIwEvb5gEs)
+
+
 space key to switch between 2d and 3d views
 
 controls are a bit like in a fps game :
@@ -26,5 +29,3 @@ make
 to execute, go in bin dir, then: 
 
 ./app
-
-
