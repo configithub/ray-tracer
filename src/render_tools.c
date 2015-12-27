@@ -1,4 +1,8 @@
 #include "render_tools.h"
+#include "data.h"
+#include "main.h"
+#include <tgmath.h>
+#include <stdlib.h>
 
 
 bool init_sdl() {
@@ -255,6 +259,47 @@ void draw_rectangle_texture(GLuint texture, int x, int y,
   glDisableClientState(GL_TEXTURE_COORD_ARRAY);
 }
 
+void draw_point(int x, int y, int r) {
+  int x1,y1,x2,y2;
+  x1=x+r; y1=y+r; x2=x+r; y2=y-r;
+  draw_line(x1, y1, x2, y2);
+  x1=x+r; y1=y+r; x2=x-r; y2=y+r;
+  draw_line(x1, y1, x2, y2);
+  x1=x-r; y1=y-r; x2=x+r; y2=y-r;
+  draw_line(x1, y1, x2, y2);
+  x1=x-r; y1=y-r; x2=x-r; y2=y+r;
+  draw_line(x1, y1, x2, y2);
+}
 
+void draw_point_rayob(int x, int y, int r) {
+  int x1,y1,x2,y2,x3,y3,x4,y4;
+  x1=x+r; y1=y+r; x2=x+r; y2=y-r;
+  x4=x-r; y4=y-r; x3=x-r; y3=y+r;
+  init_quad(x1, y1, x3, y3, x4, y4, x2, y2);
+}
 
+void draw_ngon(fpoint* center, int r, int n) {
+  int i; fpoint a; fpoint b;
+  float pi = 3.1416;
+  for(i=0; i<n; ++i) { 
+    float theta = 2*i*pi / n; 
+    a.x = center->x + r * cos(theta); 
+    a.y = center->y + r * sin(theta);
+    theta = 2*(i+1)*pi / n; 
+    b.x = center->x + r * cos(theta);
+    b.y = center->y + r * sin(theta);
+    draw_line((int)a.x, (int)a.y, (int)b.x, (int)b.y);
+  }
+}
+
+void draw_ngon2(fpoint* center, int r, int n, int d) {
+  int i; fpoint a; fpoint b;
+  float pi = 3.1416;
+  for(i=0; i<d; ++i) { 
+    float theta = 2*i*pi / d; 
+    a.x = center->x + r * cos(theta) * cos(pi/n) / cos(fmod(theta, 2*pi/n)-pi/n);
+    a.y = center->y + r * sin(theta) * cos(pi/n) / cos(fmod(theta, 2*pi/n)-pi/n);
+    draw_point_rayob(a.x, a.y, 3);
+  }
+}
 

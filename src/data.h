@@ -24,7 +24,7 @@ typedef struct {
   int h;
 } wh;
 
-#define max_texture_sheets 50
+#define max_texture_sheets 200
 wh wh_array[max_texture_sheets]; 
 
 typedef struct {
@@ -32,7 +32,7 @@ typedef struct {
   int y;
 } point;
 
-#define max_ray_corners 200
+#define max_ray_corners 2000
 point ray_corners[max_ray_corners]; 
 int current_ray_corner;
 
@@ -41,7 +41,7 @@ typedef struct {
   point b;
 } segment;
 
-#define max_ray_obstacles 200
+#define max_ray_obstacles 2000
 segment ray_obstacles[max_ray_obstacles];
 int current_ray_obstacle;
 
@@ -51,7 +51,7 @@ typedef struct {
   point c;
   point d;
 } quad;
-#define max_quad 200
+#define max_quad 2000
 quad quads[max_quad];
 int current_quad;
 
@@ -61,7 +61,7 @@ typedef struct {
   float angle; 
 } ray;
 
-#define max_rays 200
+#define max_rays 2000
 ray rays[max_rays];
 int current_ray;
 
@@ -73,7 +73,7 @@ typedef struct {
   float db;
   float ab;
 } triangle;
-#define max_triangles 200
+#define max_triangles 2000
 triangle triangles[max_triangles];
 int current_triangle;
 

@@ -7,6 +7,9 @@
 #include <stdbool.h>
 #include "data.h"
 
+typedef struct {
+  int x; int y;
+} fpoint;
 
 bool init_sdl();
 
@@ -43,6 +46,11 @@ void draw_surfaces();
 void draw_rectangle_texture(GLuint texture, int x, int y, 
                   int xtex, int ytex, int wtex, int htex, 
                 GLfloat r, GLfloat g, GLfloat b, GLfloat a);
+
+void draw_point(int x, int y, int r);
+void draw_point_rayob(int x, int y, int r);
+void draw_ngon(fpoint* center, int r, int n);
+void draw_ngon2(fpoint* center, int r, int n, int d);
 
 
 #endif

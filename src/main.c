@@ -129,8 +129,12 @@ void init_quad(int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4) {
 }
 
 void init_shapes() {
-  init_quad(WMAP/2,-40+HMAP/2, 40+WMAP/2,HMAP/2,
-            WMAP/2,40+HMAP/2, -40+WMAP/2,HMAP/2);
+  fpoint center;
+  center.x = WWIDTH/2;
+  center.y = WHEIGHT/2;
+  draw_ngon2(&center, 100, 7, 50);
+  //init_quad(WMAP/2,-40+HMAP/2, 40+WMAP/2,HMAP/2,
+  //          WMAP/2,40+HMAP/2, -40+WMAP/2,HMAP/2);
   init_quad(250, 100, 
             300, 100, 
             300, 150, 
@@ -162,7 +166,7 @@ void init_shapes() {
   init_quad(700, 75,
             750, 75,
             750, 400,
-            700, 400);
+            700, 400); 
             
 }
 
